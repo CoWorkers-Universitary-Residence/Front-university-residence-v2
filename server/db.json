@@ -1,0 +1,250 @@
+{
+  "customers": [
+    {
+      "id": "c1",
+      "name": "Elías",
+      "lastname": "Bernat Priego",
+      "email": "elias@gmail.com",
+      "password": "123456789",
+      "phoneNumber": "945621300",
+      "photo": "https://1.bp.blogspot.com/-4jeSKiA08W0/YPEBKleA5fI/AAAAAAAARuQ/7eeLpZOLOxkp5Uz1xIlepJDXGa9nQcQfQCLcBGAsYHQ/s0/sing-a-bit-of-harmony.jpg"
+    },
+    {
+      "id": "c2",
+      "name": "Candelaria",
+      "lastname": "Gálvez Gascón",
+      "email": "candelaria@gmail.com",
+      "password": "987654321",
+      "phoneNumber": "945621301",
+      "photo": "https://64.media.tumblr.com/da0f572d2a8c2d081185b443c5552c7b/9d6ea44a3722ffa2-bd/s1280x1920/0f0486280de0e7979f5482f176c2daa1edfd4a41.jpg"
+    },
+    {
+      "id": "c3",
+      "name": "Amaya Emperatriz",
+      "lastname": "Miralles Berenguer",
+      "email": "amaya@gmail.com",
+      "password": "12345678",
+      "phoneNumber": "987521400",
+      "photo": "https://1.bp.blogspot.com/-Li2tEwqfg9U/YG22qTrGInI/AAAAAAAATRc/Nr1ccr3dRXgvi2h9hGhpUYSSs8Ydh5XBwCLcBGAsYHQ/s700/sing-a-bit-of-harmony-anime-film.jpg"
+    }
+  ],
+  "agencies": [
+    {
+      "id": 1,
+      "name": "perutravel",
+      "email": "perutravel@gmail.com",
+      "description": "great adventures, even better prices",
+      "score": "5",
+      "location": "Cuzco",
+      "RUC": "123654859",
+      "phoneNumber": "4226855",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXuFbgCIbeSJgCbT0EKkiuET6O6Lr6zoibf7GqC8x7uShy9cSQMYJO0FNKblfwxnnEdFE&usqp=CAU"
+    },
+    {
+      "id": 2,
+      "name": "PeruT",
+      "email": "peruT@gmail.com",
+      "password": "1234",
+      "description": "low prices for poor families",
+      "score": "4",
+      "location": "San Miguel, Lima - Peru",
+      "RUC": "798456123",
+      "phoneNumber": "974563210",
+      "photo": "https://www.paquetesdeviajesperu.com/wp-content/uploads/2021/10/logo-peru-grand-travel-1.png"
+    },
+    {
+      "id": 3,
+      "name": "PeruM",
+      "email": "peruM@gmail.com",
+      "password": "12345",
+      "description": "from Peru to the world",
+      "score": "3",
+      "location": "Santa Anita, Lima - Peru",
+      "RUC": "852147963",
+      "phoneNumber": "963258741",
+      "photo": "https://www.paquetesdeviajesperu.com/wp-content/uploads/2021/10/logo-peru-grand-travel-1.png"
+    }
+  ],
+  "services": [
+    {
+      "id": "s1",
+      "agencyId": 1,
+      "name": "Enjoy an adventure in the mountains",
+      "score": 4,
+      "price": 480,
+      "location": "Pomabamba, Ancash",
+      "creationDate": "25-05-2020",
+      "photos": "https://cdn.aarp.net/content/dam/aarp/tourism/national/2017/10/1140-maroon-bells-mountains-north-america-esp.imgcache.rev3ae52edfa9863c5cf8680f82006b8b2d.web.900.513.jpg",
+      "description": "This is the description of this service",
+      "isOffer": 0
+    },
+    {
+      "id": "s2",
+      "agencyId": 1,
+      "name": "Climb, luck if you survive",
+      "score": 5,
+      "price": 520,
+      "newPrice": 400,
+      "location": "LugarX, Ancash",
+      "creationDate": "10-02-2020",
+      "photos": "https://www.caracteristicas.co/wp-content/uploads/2018/11/montan%CC%83as-e1543190126108.jpg",
+      "description": "This is the description of service 2",
+      "isOffer": 1
+    },
+    {
+      "id": "s3",
+      "agencyId": 3,
+      "name": "Let's see come and enjoy this place",
+      "score": 4,
+      "price": 250,
+      "location": "No, Lima",
+      "creationDate": "20-06-2021",
+      "photos": "https://estaticos.muyinteresante.es/media/cache/1140x_thumb/uploads/images/gallery/5f96c5745bafe85c04aac28e/1-monte-everest_1.jpg",
+      "description": "Take home, take home",
+      "isOffer": 0
+    },
+    {
+      "id": "s4",
+      "agencyId": 3,
+      "name": "Last chance to travel",
+      "score": 2,
+      "price": 780,
+      "newPrice": 600,
+      "location": "LugarX, Lima",
+      "creationDate": "20-06-2021",
+      "photos": "https://cdn.aarp.net/content/dam/aarp/travel/Domestic/2013-04/1140-wildflowers-mount-rainier-washington-frommers-beautiful-mountains-esp.imgcache.rev0e36c9680e5843406394b38ea8826513.jpg",
+      "description": "A new place every day, come and find out for yourself",
+      "isOffer": 1
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "serviceId": "s1",
+      "name": "activity1",
+      "description": "description1"
+    },
+    {
+      "id": 2,
+      "serviceId": "s1",
+      "name": "activity2",
+      "description": "description2"
+    },
+    {
+      "id": 1,
+      "serviceId": "s2",
+      "name": "activity1",
+      "description": "description1"
+    },
+    {
+      "id": 2,
+      "serviceId": "s2",
+      "name": "activity2",
+      "description": "description2"
+    },
+    {
+      "id": 1,
+      "serviceId": "s3",
+      "name": "activity1",
+      "description": "description1"
+    },
+    {
+      "id": 2,
+      "serviceId": "s3",
+      "name": "activity2",
+      "description": "description2"
+    },
+    {
+      "id": 1,
+      "serviceId": "s4",
+      "name": "activity1",
+      "description": "description1"
+    },
+    {
+      "id": 2,
+      "serviceId": "s4",
+      "name": "activity2",
+      "description": "description2"
+    }
+  ],
+  "hiredServices": [
+    {
+      "id": "hs1",
+      "customerId": "c1",
+      "serviceId": "s1",
+      "amount": 1,
+      "price": 480,
+      "scheduledDate": "20-11-2021",
+      "status": "pending"
+    },
+    {
+      "id": "hs2",
+      "customerId": "c2",
+      "serviceId": "s2",
+      "amount": 2,
+      "price": 320,
+      "scheduledDate": "20-09-2021",
+      "status": "active"
+    },
+    {
+      "id": "hs3",
+      "customerId": "c2",
+      "serviceId": "s1",
+      "amount": 1,
+      "price": 320,
+      "scheduledDate": "20-11-2020",
+      "status": "finished"
+    },
+    {
+      "customerId": "c1",
+      "serviceId": "s2",
+      "amount": "5",
+      "price": 520,
+      "scheduledDate": "",
+      "status": "active",
+      "id": "7yZw618"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "agencyId": 1,
+      "author": "Julieta Rodrigues Gala",
+      "date": "September 2021",
+      "photo": "https://cdn.vuetifyjs.com/images/john.jpg",
+      "comment": "I had a good experience with this service. I had never dared to do mountaineering, but With this company I have changed my way of seeing things. The guides are very helpful and they helped me In many sections, they showed me the best places along the way and I was always safe.I recommend it , 10/10"
+    },
+    {
+      "id": 2,
+      "agencyId": 1,
+      "author": "Sebastian Mazca Ilz",
+      "date": "December 2020",
+      "photo": "https://cdn.vuetifyjs.com/images/john.jpg",
+      "comment": "It is not my first time with TravelNew, they never disappoint me, it is true that for some sections the costs are quite high compared to the others, but I would not change it for anything, Thank you!!!!!!!!!"
+    },
+    {
+      "id": 3,
+      "serviceId": "s1",
+      "author": "Sebastian Mazca Ilz",
+      "date": "December 2020",
+      "photo": "https://cdn.vuetifyjs.com/images/john.jpg",
+      "comment": "It is not my first time with TravelNew, they never disappoint me, it is true that for some sections the costs are quite high compared to the others, but I would not change it for anything, Thank you!!!!!!!!!"
+    },
+    {
+      "id": 4,
+      "serviceId": "s1",
+      "author": "Juan Prado Mendoza",
+      "date": "December 2020",
+      "photo": "https://cdn.vuetifyjs.com/images/john.jpg",
+      "comment": "It is not my first time with TravelNew, they never disappoint me, it is true that for some sections the costs are quite high compared to the others, but I would not change it for anything, Thank you!!!!!!!!!"
+    },
+    {
+      "id": 5,
+      "serviceId": "s2",
+      "author": "Juan Prado Mendoza",
+      "date": "December 2020",
+      "photo": "https://cdn.vuetifyjs.com/images/john.jpg",
+      "comment": "It is not my first time with TravelNew, they never disappoint me, it is true that for some sections the costs are quite high compared to the others, but I would not change it for anything, Thank you!!!!!!!!!"
+    }
+  ]
+}
