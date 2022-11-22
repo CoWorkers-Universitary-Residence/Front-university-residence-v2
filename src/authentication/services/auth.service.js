@@ -2,32 +2,49 @@
 import axios from 'axios';
 
 //ENDPOINT
-const API_URL = 'https://go2climbisw22.azurewebsites.net/api/v1/users/auth/sign-in/';
-const API_SIGN_UP_CUSTOMER = 'https://go2climbisw22.azurewebsites.net/api/v1/customers/auth/sign-up/';
-const API_SIGN_UP_AGENCY = 'https://go2climbisw22.azurewebsites.net/api/v1/agencies/auth/sign-up/';
+const API_SIGN_IN_TENANT = 'https://app-univeristy-userservice.herokuapp.com/api/v1/userstenant/sign-in';
+const API_SIGN_UP_TENANT = 'https://app-univeristy-userservice.herokuapp.com/api/v1/userstenant/sign-up';
+const API_SIGN_IN_OWNER = 'https://app-univeristy-userservice.herokuapp.com/api/v1/usersowner/sign-in';
+const API_SIGN_UP_OWNER = 'https://app-univeristy-userservice.herokuapp.com/api/v1/usersowner/sign-up';
 class AuthService {
     //EJECUTA EL PROCESO DE LOGIN DADO UN USUARIO INGRESADO
-    login(user) {
-        return axios.post(API_URL, {
-            email: user.email,
-            password: user.password
-        })
+    loginTenant(user) {
+        return axios.get(`${API_SIGN_IN_TENANT}?email=${user.email}&password=${user.password}`)
             .then(response => {
-                if (response.data.token) {
+                if (response.status === 200) {
                     console.log("user:" + response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
+                    return response.data;
+                }
+                else{
+                    console.log("Something went wrong 1")
+                    this.loginOwner(user);
+                }
+            });
+    }
+
+    loginOwner(user) {
+        return axios.get(`${API_SIGN_IN_OWNER}?email=${user.email}&password=${user.password}`)
+            .then(response => {
+                if (response.status === 200) {
+                    console.log("user:" + response.data);
+                    localStorage.setItem('user', JSON.stringify(response.data));
+                }
+                else{
+                    console.log("Something went wrong 2")
                 }
                 return response.data;
             });
     }
+
     //ELIMINA EL USUARIO DEL NAVEGADOR
     logout() {
         localStorage.removeItem('user');
     }
 
     //REGISTER CUSTOMER
-    registerCustomer(customer) {
-        return axios.post(API_SIGN_UP_CUSTOMER, {
+    registerTenant(customer) {
+        return axios.post(API_SIGN_UP_TENANT, {
             name: customer.name,
             lastName: customer.lastname,
             email: customer.email,
@@ -37,8 +54,8 @@ class AuthService {
     }
 
     //REGISTER AGENCY
-    registerAgency(agency) {
-        return axios.post(API_SIGN_UP_AGENCY, {
+    registerOwner(agency) {
+        return axios.post(API_SIGN_UP_OWNER, {
             name: agency.name,
             email: agency.email,
             password: agency.password,
