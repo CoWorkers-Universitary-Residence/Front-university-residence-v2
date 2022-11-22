@@ -16,14 +16,21 @@ export const auth = {
     state: initialState,
     actions: {
         login({ commit }, user) {
-            return AuthService.loginTenant(user).then(
+            return AuthService.loginOwner(user).then(
                 user => {
                     commit('loginSuccess', user);
                     return Promise.resolve(user);
                 },
-                error => {
-                    commit('loginFailure');
-                    return Promise.reject(error);
+                () => {
+                    return AuthService.loginTenant(user).then(
+                        user => {
+                            commit('loginSuccess', user);
+                            return Promise.resolve(user);
+                        },
+                        error => {
+                            commit('loginFailure');
+                            return Promise.reject(error);
+                        })
                 });
         },
         logout({ commit }) {
@@ -35,11 +42,11 @@ export const auth = {
         loginSuccess(state, user) {
             state.status.loggedIn = true;
             state.user = user;
-            if(state.user.description == null) state.type = "customer";
+            if(user.occupation !== null && user.occupation !== undefined) state.type = "customer";
             else state.type = "agency";
         },
         checkType(state){
-            if(state.user.description == null) state.type = "customer";
+            if(user.occupation !== null && user.occupation !== undefined) state.type = "customer";
             else state.type = "agency";
         },
         loginFailure(state) {

@@ -9,29 +9,26 @@ const API_SIGN_UP_OWNER = 'https://app-univeristy-userservice.herokuapp.com/api/
 class AuthService {
     //EJECUTA EL PROCESO DE LOGIN DADO UN USUARIO INGRESADO
     loginTenant(user) {
-        return axios.get(`${API_SIGN_IN_TENANT}?email=${user.email}&password=${user.password}`)
+        let encodedEmail = encodeURIComponent(user.email);
+        let encodedPassword = encodeURIComponent(user.password);
+        return axios.get(`${API_SIGN_IN_TENANT}?email=${encodedEmail}&password=${encodedPassword}`)
             .then(response => {
                 if (response.status === 200) {
                     console.log("user:" + response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
-                    return response.data;
                 }
-                else{
-                    console.log("Something went wrong 1")
-                    this.loginOwner(user);
-                }
+                return response.data;
             });
     }
 
     loginOwner(user) {
-        return axios.get(`${API_SIGN_IN_OWNER}?email=${user.email}&password=${user.password}`)
+        let encodedEmail = encodeURIComponent(user.email);
+        let encodedPassword = encodeURIComponent(user.password);
+        return axios.get(`${API_SIGN_IN_OWNER}?email=${encodedEmail}&password=${encodedPassword}`)
             .then(response => {
                 if (response.status === 200) {
                     console.log("user:" + response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
-                }
-                else{
-                    console.log("Something went wrong 2")
                 }
                 return response.data;
             });
