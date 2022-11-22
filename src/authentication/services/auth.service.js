@@ -60,14 +60,32 @@ class AuthService {
     //REGISTER AGENCY
     registerOwner(agency) {
         return axios.post(API_SIGN_UP_OWNER, {
-            name: agency.name,
             email: agency.email,
             password: agency.password,
+            name: agency.name,
+            lastName: agency.lastName,
+            gender: agency.gender,
+            date_of_birth: agency.date_of_birth,
             description: agency.description,
-            location: agency.location,
-            ruc: agency.RUC,
-            phoneNumber: agency.phoneNumber,
-        });
+            phone_number: agency.phone_number,
+            country: agency.country,
+            city: agency.city,
+            address: agency.address,
+            photo: agency.photo,
+            score: agency.score,
+            subscriptionId: agency.subscriptionId
+        }).then(
+            response => {
+                if (response.status === 200) {
+                    console.log("user:" + response.data);
+                }
+                else{
+                    console.log(response.status)
+                    console.log(response.data)
+                }
+            }
+        )
+            .catch(e => console.log(e));
     }
 
 }

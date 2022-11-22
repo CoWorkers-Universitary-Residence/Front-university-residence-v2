@@ -6,7 +6,7 @@
           <v-btn icon color="black" @click="closeForm">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <div class="mx-auto"><h3>Registration Agency</h3></div>
+          <div class="mx-auto"><h3>Registration Owner</h3></div>
           <v-btn icon disabled></v-btn>
         </div>
         <hr>
@@ -28,18 +28,53 @@
               required
           ></v-text-field>
           <h3 class="mt-3">Agency information</h3>
-          <v-text-field label = "Agency name"
-                        v-model="agency.name"
-                        :rules="nameRules"
-                        required
-          ></v-text-field>
           <v-row>
             <v-col cols="6">
               <v-text-field cols="6"
-                            label = "RUC"
-                            type = 'tel'
-                            v-model="agency.RUC"
-                            :rules="RucRules"
+                            label = "Name"
+                            v-model="agency.name"
+                            :rules="textRules"
+                            required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field cols="6"
+                            label = "Last Name"
+                            v-model="agency.lastName"
+                            :rules="textRules"
+                            required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">
+              <v-combobox label = "Gender"
+                          v-model="agency.gender"
+                          :rules="textRules"
+                          :items="items"
+                          required
+              ></v-combobox>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field
+                  required
+                  type="date"
+                  v-model="agency.date_of_birth"
+                  :rules="textRules"
+                  label="Date of Birth"
+                  class="rounded-pill"
+                  placeholder="Enter the date"
+                  outlined
+                  color="blue">
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">
+              <v-text-field cols="6"
+                            label = "Description"
+                            v-model="agency.description"
+                            :rules="textRules"
                             required
               ></v-text-field>
             </v-col>
@@ -47,20 +82,38 @@
               <v-text-field cols="6"
                             label = "Phone number"
                             type = 'tel'
-                            v-model="agency.phoneNumber"
+                            v-model="agency.phone_number"
                             :rules="phoneNumberRules"
                             required
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-text-field label = "Physical location"
-                        v-model = "agency.location"
-                        :rules="locationRules"
+          <v-row>
+            <v-col cols="6">
+              <v-text-field cols="6"
+                            label = "Country"
+                            v-model="agency.country"
+                            :rules="textRules"
+                            required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field cols="6"
+                            label = "City"
+                            v-model="agency.city"
+                            :rules="textRules"
+                            required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-text-field label = "Address"
+                        v-model = "agency.address"
+                        :rules="textRules"
                         required
           ></v-text-field>
-          <v-text-field label = "Description of my agency"
-                        v-model = "agency.description"
-                        :rules="descriptionRules"
+          <v-text-field label = "Photo URL"
+                        v-model = "agency.photo"
+                        :rules="textRules"
                         required
           ></v-text-field>
           <v-checkbox
@@ -70,76 +123,10 @@
               :rules="checkboxRules"
               required
           ></v-checkbox>
-          <v-btn color="primary" class="mb-6" block rounded  @click="handleNext">Next</v-btn>
+          <v-btn color="primary" class="mb-6" block rounded  @click="handleRegister">Complete</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
-    <!--Pay dialog-->
-    <v-dialog v-model="payDialog" persistent max-width="600px">
-      <v-card class="rounded-xl">
-        <v-card-text class="pa-2">
-          <div cols="12">
-            <v-btn icon color="black" @click="closePayDialog">
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </div>
-          <hr>
-          <v-form ref="payForm" class="mx-8" lazy-validation>
-            <h3 class="mt-4">Select a subscription plan</h3>
-
-            <div class="personalization">
-              <v-btn-toggle v-model="togglePlan" class="pt-4" color="primary" rounded mandatory>
-                <v-btn color="white" block>
-                  <div class="btn-diff">
-                    <div>Basic plan</div>
-                    <v-icon color="#CD7F32"> mdi-key </v-icon>
-                  </div>
-                </v-btn>
-                <v-btn color="white" block>
-                  <div class="btn-diff">
-                    <div>Standard plan</div>
-                    <v-icon color="#C0C0C0"> mdi-key </v-icon>
-                  </div>
-                </v-btn>
-                <v-btn color="white" block>
-                  <div class="btn-diff">
-                    <div>Premium plan</div>
-                    <v-icon color="#FFBF00"> mdi-key </v-icon>
-                  </div>
-                </v-btn>
-              </v-btn-toggle>
-            </div>
-
-            <h3 class="mt-4">Payment details</h3>
-            <v-text-field label = "Credit card number"
-                          :rules="cardRules"
-                          required
-            ></v-text-field>
-            <v-text-field label = "Cardholder name"
-                          :rules="holderRules"
-                          required
-            ></v-text-field>
-            <v-row>
-              <v-col cols="6">
-                <v-text-field cols="6"
-                              label = "MM/AA"
-                              :rules="campRules"
-                              required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="6">
-                <v-text-field cols="6"
-                              label = "CVC/CVV"
-                              :rules="campRules"
-                              required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-btn color="primary" class="mb-6 mt-2" block rounded  @click="handleRegister">Complete</v-btn>
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
   </v-dialog>
 </template>
 
@@ -153,17 +140,28 @@ export default {
   },
   data: () => ({
     agency: {
-      name: '',
       email: '',
       password: '',
+      name: '',
+      lastName: '',
+      gender: '',
+      date_of_birth: '',
       description: '',
-      location: '',
-      RUC: '',
-      phoneNumber: '',
+      phone_number: '',
+      country: '',
+      city: '',
+      address: '',
+      photo: '',
+      score: 0,
+      subscriptionId: 1
     },
     payDialog: false,
     togglePlan: undefined,
-
+    items: [
+      '',
+      'M',
+      'F',
+    ],
     emailRules: [
       v => !!v || 'E-mail is required',
       v => /.+@.+/.test(v) || 'E-mail must be valid'
@@ -172,18 +170,10 @@ export default {
       v => !!v || 'Password is required',
       v => (v && v.length >= 6) || 'Password must have at least 6 characters',
       v => /(?=.*[A-Z])/.test(v) || 'Must have one uppercase character',
-      v => /(?=.*\d)/.test(v) || 'Must have one number',
-      v => /([!@$%])/.test(v) || 'Must have one special character [!@$%]'
+      v => /(?=.*\d)/.test(v) || 'Must have one number'
     ],
-    nameRules: [
-      v => !!v || 'Agency name is required',
-    ],
-    descriptionRules: [
-      v => !!v || 'Description is required',
-    ],
-    RucRules: [
-      v => !!v || 'RUC is required',
-      v => (!isNaN(parseFloat(v)) && v >= 0 && v <= 99999999999) || 'RUC can only contain numbers'
+    textRules: [
+      v => !!v || 'Field is required',
     ],
     phoneNumberRules: [
       v => !!v || 'Phone number is required',
@@ -227,10 +217,13 @@ export default {
       }
     },
     async handleRegister(){
-      if(this.$refs.payForm.validate()) {
-        await AuthService.registerAgency(this.agency);
+      if(this.$refs.form.validate()) {
+        await AuthService.registerOwner(this.agency);
       }
-      this.closePayDialog();
+      else{
+        console.log("Something bad")
+      }
+      this.closeForm();
     }
   }
 }
