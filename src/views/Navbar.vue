@@ -83,8 +83,8 @@ export default {
   data: () => ({
     notRegistered: [
       { id: 0, title: 'Sign in'},
-      { id: 1, title: 'Sign up as user' },
-      { id: 2, title: 'Sign up as agency' },
+      { id: 1, title: 'Sign up as tenant' },
+      { id: 2, title: 'Sign up as owner' },
     ],
     registeredCustomer: [
       { id: 0, title: 'My Profile'},

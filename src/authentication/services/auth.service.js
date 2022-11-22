@@ -44,9 +44,16 @@ class AuthService {
         return axios.post(API_SIGN_UP_TENANT, {
             name: customer.name,
             lastName: customer.lastname,
+            gender: customer.gender,
+            date_of_birth: customer.date_of_birth,
+            description: customer.description,
+            photo: customer.photo,
             email: customer.email,
+            occupation: customer.occupation,
             password: customer.password,
-            phoneNumber: customer.phoneNumber,
+            phone_number: customer.phone_number,
+            country: customer.country,
+            city: customer.city
         });
     }
 
