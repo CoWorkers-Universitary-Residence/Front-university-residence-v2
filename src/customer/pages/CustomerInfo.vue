@@ -10,9 +10,26 @@
     <h3 class="black--text"> {{customer.name + " " + customer.lastName}} </h3>
     <p class="grey--text"> {{ customer.email }}</p>
     <div>
-      <h4 class="black--text"> Phone number: </h4>
-      <p class="grey--text font-italic"> {{customer.phoneNumber}} </p>
+      <h4 class="black--text"> Description: </h4>
+      <p class="grey--text font-italic"> {{customer.description}} </p>
     </div>
+    <div>
+      <h4 class="black--text"> Occupation: </h4>
+      <p class="grey--text font-italic"> {{customer.occupation}} </p>
+    </div>
+    <div>
+      <h4 class="black--text"> Phone number: </h4>
+      <p class="grey--text font-italic"> {{customer.phone_number}} </p>
+    </div>
+    <div>
+      <h4 class="black--text"> Gender: </h4>
+      <p class="grey--text font-italic"> {{customer.gender === "M" ? "Male" : "Female"}} </p>
+    </div>
+    <div>
+      <h4 class="black--text"> Location: </h4>
+      <p class="grey--text font-italic"> {{customer.city}} - {{customer.country}} </p>
+    </div>
+
   </v-card-text>
 </v-card>
 </template>

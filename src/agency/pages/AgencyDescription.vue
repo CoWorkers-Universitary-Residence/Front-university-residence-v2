@@ -9,43 +9,34 @@
       </v-col>
       <div v-if="editInformation == false">
         <v-card-text class="pt-0 pb-0">
-          <v-card-title class="pt-0">{{agency.name}}</v-card-title>
+          <v-card-title class="pt-0">{{agency.name}} {{agency.lastName}}</v-card-title>
           <v-card-subtitle>{{ agency.email }}</v-card-subtitle>
-          <v-row align="center" class="mx-3">
-            <v-rating
-                :value="agency.score"
-                color="amber"
-                dense
-                half-increments
-                readonly
-                size="20"
-            ></v-rating>
-          </v-row>
-          <v-card-text class="pb-0">
-            <p>{{agency.description}}</p>
-          </v-card-text>
           <v-card-text class="pt-0 pb-0">
             <div class="d-flex flex-column">
-              <p class="font-weight-bold">Location</p>
-              <p>{{agency.location}}</p>
+              <p class="font-weight-bold">Description</p>
+              <p>{{agency.description}}</p>
             </div>
             <div class="d-flex flex-column">
-              <p class="font-weight-bold">RUC</p>
-              <p>{{ agency.ruc }}</p>
+              <p class="font-weight-bold">Gender</p>
+              <p>{{agency.gender === 'M' ? "Male" : "Female"}}</p>
+            </div>
+            <div class="d-flex flex-column">
+              <p class="font-weight-bold">Location</p>
+              <p>{{agency.address}} - {{agency.city}} - {{agency.country}}</p>
             </div>
             <div class="d-flex flex-column">
               <p class="font-weight-bold">Telephone</p>
-              <p>{{agency.phoneNumber}}</p>
+              <p>{{agency.phone_number}}</p>
             </div>
           </v-card-text>
         </v-card-text>
-        <v-card-actions class="justify-center">
+        <!--<v-card-actions class="justify-center">
           <template>
             <v-btn v-on:click="changeEditInformation" color="primary mb-2" >
               Edit information
             </v-btn>
           </template>
-        </v-card-actions>
+        </v-card-actions>-->
       </div>
       <v-form v-else class="px-8 py-4">
         <v-row class="pb-0">
@@ -116,23 +107,32 @@ export default {
     editInformation: false,
     newInformation: {
       name: "",
+      lastName: "",
+      gender: "",
+      date_of_birth: "",
       email: "",
       description: "",
-      score: "",
-      location: "",
-      RUC: "",
       phoneNumber: "",
+      photo: "",
+      country: "",
+      city: "",
+      address: ""
     },
   }),
 
   methods: {
     clearInputs() {
       this.newInformation.name = '';
+      this.newInformation.lastName = '';
+      this.newInformation.gender = '';
+      this.newInformation.date_of_birth = '';
       this.newInformation.email = '';
       this.newInformation.description = '';
-      this.newInformation.location = '';
-      this.newInformation.RUC = '';
       this.newInformation.phoneNumber = '';
+      this.newInformation.photo = '';
+      this.newInformation.country = '';
+      this.newInformation.city = '';
+      this.newInformation.address = '';
     },
     retrieveAgency(){
       this.id = this.$store.state.auth.user.id;

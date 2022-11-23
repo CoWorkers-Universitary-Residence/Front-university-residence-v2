@@ -2,7 +2,7 @@ import http from '../../core/http-common'
 import authHeader from "../../authentication/services/auth.header";
 
 class CustomersService {
-    endPoint = 'https://go2climbisw22.azurewebsites.net/api/v1/customers';
+    endPoint = 'https://app-univeristy-userservice.herokuapp.com/api/v1/userstenant';
 
     getAll() {
         return http.get(this.endPoint,{ headers: authHeader()});

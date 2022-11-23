@@ -29,11 +29,6 @@
           <h4 class="mt-3">Do you forgot your password?</h4>
           <v-btn color="primary" class="mt-6" block rounded  @click="handleSubmit()">Sign in</v-btn>
         </v-form>
-        <div class="mx-8">
-          <hr class="mt-8 mb-8">
-          <v-btn color="primary" class="mt-6" block rounded>Register and enjoy your adventure</v-btn>
-          <v-btn color="primary" class="mt-2" block rounded>Register and offer tourist services</v-btn>
-        </div>
       </v-card-text>
       <v-card-actions>
       </v-card-actions>

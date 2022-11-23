@@ -8,12 +8,7 @@
         <v-col cols="12" class="col-md-9" v-if="!createService && !updateService">
           <v-card class="mb-6 px-4 rounded-lg">
             <v-card-title>Services</v-card-title>
-            <div class="px-4 d-flex justify-space-between">
-              <v-btn
-                  depressed dark
-                  v-on:click="setOnlyOffer()"
-                  v-bind:class="[onlyOffer? active: noActive]">Offers
-              </v-btn>
+            <div class="px-4 d-flex justify-end">
               <v-btn v-on:click="setAddService" dark fab small color="primary">
                 <v-icon dark>mdi-plus</v-icon>
               </v-btn>
@@ -94,30 +89,6 @@
               </v-col>
             </v-row>
           </v-card>
-          <v-card class="mb-4 rounded-lg py-4 px-8">
-            <v-card-title class="pa-0">Reviews</v-card-title>
-            <v-row>
-              <v-col cols="12" class="d-flex flex-row align-center col-md-6">
-                <div class="pr-4 col-5">Professionalism</div>
-                <v-progress-linear class="col-7" value="100" light background-color="grey" color="black"></v-progress-linear>
-              </v-col>
-              <v-col cols="12" class="d-flex flex-row align-center col-md-6">
-                <div class="pr-4 col-5">Price/Quality</div>
-                <v-progress-linear class="col-7" value="100" light background-color="grey" color="black"></v-progress-linear>
-              </v-col>
-              <v-col cols="12" class="d-flex flex-row align-center col-md-6">
-                <div class="pr-4 col-5">Security</div>
-                <v-progress-linear class="col-7" value="100" light background-color="grey" color="black"></v-progress-linear>
-              </v-col>
-              <v-col cols="12" class="d-flex flex-row align-center col-md-6">
-                <div class="pr-4 col-5">Costs</div>
-                <v-progress-linear class="col-7" value="100" light background-color="grey" color="black"></v-progress-linear>
-              </v-col>
-            </v-row>
-            <div class="mt-4">
-              <list-reviews v-bind:typeReview="'agency'" :reviews="reviews"></list-reviews>
-            </div>
-          </v-card>
         </v-col>
         <v-col cols="12" class="col-md-9" v-else-if="createService">
           <add-service v-on:cancelAddService="setAddService"></add-service>
@@ -135,11 +106,10 @@ import AgencyDescription from "./AgencyDescription";
 import AgencyService from '../services/agencies.service';
 import ServicesService from '../services/services.service';
 import AddService from '../pages/AddServices';
-import ListReviews from '../../common/pages/ListReviews';
 import UpdateService from "@/agency/pages/UpdateServices";
 export default {
   name: "CustomerProfile",
-  components: { AgencyDescription, ListReviews, AddService, UpdateService },
+  components: { AgencyDescription, AddService, UpdateService },
   data: () => ({
     errors: [],
     serviceId: 0,

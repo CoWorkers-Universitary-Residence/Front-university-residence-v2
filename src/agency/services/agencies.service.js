@@ -1,7 +1,7 @@
 import http from '../../core/http-common'
 
 class AgenciesService {
-    endPoint = 'https://go2climbisw22.azurewebsites.net/api/v1/agencies';
+    endPoint = 'https://app-univeristy-userservice.herokuapp.com/api/v1/usersowner';
 
     getAll() {
         return http.get(this.endPoint);
