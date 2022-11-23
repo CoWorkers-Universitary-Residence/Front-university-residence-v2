@@ -7,7 +7,7 @@
         </v-col>
         <v-col cols="12" class="col-md-9" v-if="!createService && !updateService">
           <v-card class="mb-6 px-4 rounded-lg">
-            <v-card-title>Services</v-card-title>
+            <v-card-title>Publications</v-card-title>
             <div class="px-4 d-flex justify-end">
               <v-btn v-on:click="setAddService" dark fab small color="primary">
                 <v-icon dark>mdi-plus</v-icon>
@@ -127,6 +127,7 @@ export default {
       await AgencyService.getServices(id)
         .then((response) => {
           this.services = response.data;
+          console.log(this.services)
         })
         .catch(error => {
           this.errors.push(error);
@@ -194,7 +195,7 @@ export default {
   mounted() {
     this.idAgency = this.$store.state.auth.user.id;
     this.getServiceOfAgency(this.idAgency);
-    this.getReviewsOfAgency(this.idAgency);
+    //this.getReviewsOfAgency(this.idAgency);
   },
 
 }

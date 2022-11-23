@@ -10,7 +10,7 @@ class AgenciesService {
         return http.get(`${this.endPoint}/${id}`);
     }
     getServices(id) {
-        return http.get(`${this.endPoint}/${id}/services`);
+        return http.get(`https://university-publicationservice.herokuapp.com/api/v1/publications/owner/${id}`);
     }
     getServiceOffer(id) {
         return http.get(`${this.endPoint}/${id}/services?isOffer=1`);
