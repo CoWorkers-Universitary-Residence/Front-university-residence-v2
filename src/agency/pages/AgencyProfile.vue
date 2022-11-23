@@ -31,7 +31,7 @@
                     <v-img
                         class="rounded-t-lg"
                         height=120
-                        :src=service.photos
+                        :src=service.photo
                     >
                       <v-expand-transition>
                         <div
