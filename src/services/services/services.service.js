@@ -1,15 +1,12 @@
 import http from '../../core/http-common'
 
 class ServicesService {
-    endPoint = 'https://go2climbisw22.azurewebsites.net/api/v1/services';
+    endPoint = 'https://university-publicationservice.herokuapp.com/api/v1/publications';
     getAll() {
         return http.get(`${this.endPoint}`);
     }
     getById(id) {
         return http.get(`${this.endPoint}/${id}`);
-    }
-    getByCategory(category, start, limit) {
-        return http.get(`${this.endPoint}/services/category?name=${category}&start=${start}&limit=${limit}`);
     }
     getByName(name, start, limit) {
         return http.get(`${this.endPoint}/services/text/${name}?start=${start}&limit=${limit}`);
