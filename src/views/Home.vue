@@ -274,7 +274,7 @@ export default {
     },
     setId(i){
       this.id = i
-      this.$router.push({ path: `/publications/${this.id}`});
+      this.$router.push({ path: `/services/${this.id}`});
     }
   },
   async mounted() {

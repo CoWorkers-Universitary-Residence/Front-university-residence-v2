@@ -17,7 +17,7 @@
               <v-subheader class="font-weight-bold title"> ${{ service.price }}</v-subheader>
               <v-list-item-group>
                 <v-form ref="form" class="v-border-none" lazy-validation border-none>
-                  <v-subheader class="font-weight-medium subtitle-1">Output</v-subheader>
+                  <v-subheader class="font-weight-medium subtitle-1">Start date</v-subheader>
                   <v-text-field
                       required
                       type="date"
@@ -33,22 +33,37 @@
                       placeholder="Enter the date"
                       outlined
                       color="blue"></v-text-field>
-                  <v-subheader class="font-weight-medium subtitle-1">Persons</v-subheader>
+                  <v-subheader class="font-weight-medium subtitle-1">Months</v-subheader>
                   <v-text-field
                       required
                       type="number"
                       min="0"
-                      max="5"
+                      max="12"
                       :rules="peopleRules"
-                      v-model="nPeople"
-                      oninput="if(this.value <= 0) this.value = 1; else if (this.value > 5) this.value = 5;"
+                      v-model="nMonths"
+                      oninput="if(this.value <= 0) this.value = 1; else if (this.value > 12) this.value = 12;"
                       full-width
                       solo
                       dense
                       hide-details
                       single-line
                       flat class="rounded-pill adjust"
-                      placeholder="Enter the number of people"
+                      placeholder="Enter the number of months"
+                      outlined
+                      color="blue"></v-text-field>
+                  <v-subheader class="font-weight-medium subtitle-1">Phone number</v-subheader>
+                  <v-text-field
+                      required
+                      type="number"
+                      :rules="peopleRules"
+                      v-model="nCellphone"
+                      full-width
+                      solo
+                      dense
+                      hide-details
+                      single-line
+                      flat class="rounded-pill adjust"
+                      placeholder="Enter your cellphone"
                       outlined
                       color="blue"></v-text-field>
                 </v-form>
@@ -105,7 +120,7 @@
                     ></v-img>
                     <div class="agency-div">
                       <v-subheader>Offered by<span class="font-weight-bold pl-1">{{ agency.name }}</span></v-subheader>
-                      <v-subheader class="align-lg-start">Registered service since {{dateTransform(service.creationDate)}}</v-subheader>
+                      <v-subheader class="align-lg-start">Registered room since {{dateTransform(service.creationDate)}}</v-subheader>
                     </div>
                   </v-col>
                   <v-col><v-spacer></v-spacer></v-col>
@@ -118,7 +133,7 @@
             </v-list>
           </v-card>
           <!-- Section: Video reference -->
-          <v-card v-if='service.video !== "" && service.video !== undefined' class="py-4 px-8 mb-4 rounded-lg">
+          <!--v-card v-if='service.video !== "" && service.video !== undefined' class="py-4 px-8 mb-4 rounded-lg">
             <v-list>
               <v-subheader class="title font-weight-bold pl-0"> Reference Videos </v-subheader>
               <v-row class="justify-center">
@@ -128,26 +143,44 @@
                       <iframe marginwidth="auto" width="800" height="450" :src="service.video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </section>
                   </div>
-                  <!--<video-embed style="min-height: 400px" :src="service.video"></video-embed>-->
                 </v-col>
               </v-row>
             </v-list>
-          </v-card>
+          </v-card-->
           <!-- Section 3: Service Activities -->
           <v-row>
             <v-col>
               <v-card min-height="175px" class="py-4 px-8 mb-4 rounded-lg">
                 <v-list>
-                  <header class="title font-weight-bold pl-0">The activities you will do</header>
-                  <div v-if="activities.length > 0">
-                    <v-subheader v-for="(act, index) in activities" v-bind:key="index">
-                      <v-icon class="pa-1">mdi-playlist-check</v-icon>
-                      {{act.description}}
-                    </v-subheader>
-                  </div>
-                  <div v-else>
-                    <v-subheader class="pa-0">No activities have been added for the service yet.</v-subheader>
-                  </div>
+                  <header class="title font-weight-bold pl-0">More information</header>
+                  <v-col class="d-flex">
+                    <v-list-item-group >
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Availability: {{service.availability}}</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Rooms: {{service.rooms}}</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Height: {{service.height}}.0</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Width: {{service.width.toFixed(1)}}</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>City: {{service.city}}</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Country: {{service.country}}</v-subheader>
+                      </v-row>
+                    </v-list-item-group>
+                  </v-col>
                 </v-list>
               </v-card>
             </v-col>
@@ -156,12 +189,26 @@
               <v-card min-height="175px" class="py-4 px-8 mb-4 rounded-lg">
                 <v-list>
                   <header class="title font-weight-bold pl-0">Good to Know</header>
-                  <div v-if="service.description.length > 0">
-                    <v-subheader class="pa-0">{{service.description}}</v-subheader>
-                  </div>
-                  <div v-else>
-                    <v-subheader class="pa-0">Description of the service not yet available.</v-subheader>
-                  </div>
+                  <v-col class="d-flex">
+                    <v-list-item-group >
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Extra expenses: {{service.extra_expenses}}</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Gender: {{service.gender}}</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Visit: {{service.visit}}</v-subheader>
+                      </v-row>
+                      <v-row>
+                        <v-icon>mdi-check</v-icon>
+                        <v-subheader>Escrow: ${{service.escrow}}</v-subheader>
+                      </v-row>
+                    </v-list-item-group>
+                  </v-col>
                 </v-list>
               </v-card>
             </v-col>
@@ -199,14 +246,15 @@ export default {
       v => !!v || 'Date is required',
     ],
     peopleRules: [
-      v => !!v || '´Number people is required',
+      v => !!v || '´This field is required',
     ],
     service: [],
     agency: [],
     activities: [],
     reviews: [],
     dateOutput: '',
-    nPeople: null,
+    nMonths: null,
+    nCellphone: null,
     id: null,
     agencyId: null,
     dialogSolicit: false,
@@ -225,8 +273,9 @@ export default {
         .catch(errors => {
           errors.push(errors.message);
         });
+      //console.log("asdasdasd");
     },
-    async retrieveActivities() {
+    /*async retrieveActivities() {
       await ServicesService.getWithActivities(this.id)
         .then(response => {
           this.activities = response.data;
@@ -234,8 +283,8 @@ export default {
         .catch(errors => {
           this.errors.push(errors);
         });
-    },
-    async retrieveReviews() {
+    },*/
+    /*async retrieveReviews() {
       await ServicesService.getWithServiceReviews(this.id)
         .then(response => {
           this.reviews = response.data;
@@ -243,7 +292,7 @@ export default {
         .catch(errors => {
           this.errors.push(errors);
         });
-    },
+    },*/
     async retrieveAgency() {
       await AgenciesService.getById(this.service.ownerId)
         .then(response => {
@@ -271,13 +320,13 @@ export default {
   },
   async mounted() {
     await this.retrieveService();
-    await this.retrieveActivities();
-    await this.retrieveReviews();
+    //await this.retrieveActivities();
+    //await this.retrieveReviews();
     await this.retrieveAgency();
   },
   beforeMount() {
     this.id = this.$route.params.id;
-    this.typeUser = this.$store.state.user.typeUser;
+    //this.typeUser = this.$store.state.user.typeUser;
   }
 }
 </script>
