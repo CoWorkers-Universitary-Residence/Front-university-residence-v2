@@ -1,7 +1,7 @@
 import http from '../../core/http-common'
 
 class ServicesService {
-    endPoint = 'https://go2climbisw22.azurewebsites.net/api/v1/services';
+    endPoint = 'https://university-publicationservice.herokuapp.com/api/v1/publications';
 
     getById(id) {
         return http.get(`${this.endPoint}/${id}`);

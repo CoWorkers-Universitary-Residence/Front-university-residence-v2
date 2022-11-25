@@ -39,10 +39,10 @@
                                   class="black--text h4 truncate-text"
                                   v-bind="attrs"
                                   v-on="on"
-                              >{{ service.name }}</p>
+                              >{{ service.about }}</p>
                             </a>
                           </template>
-                          <p>{{ service.name }}</p>
+                          <p>{{ service.about }}</p>
                         </v-tooltip>
                         <v-card-text class="d-flex flex-column align-center">
                           <v-row align="center" class="mx-0">
@@ -95,10 +95,10 @@
                                   class="black--text h4 truncate-text"
                                   v-bind="attrs"
                                   v-on="on"
-                              >{{ service.name }}</p>
+                              >{{ service.about }}</p>
                             </a>
                           </template>
-                          <p>{{ service.name }}</p>
+                          <p>{{ service.about }}</p>
                         </v-tooltip>
                         <v-card-text class="d-flex flex-column align-center">
                           <v-row align="center" class="mx-0">
@@ -151,10 +151,10 @@
                                   class="black--text h4 truncate-text"
                                   v-bind="attrs"
                                   v-on="on"
-                              >{{ service.name }}</p>
+                              >{{ service.about }}</p>
                             </a>
                           </template>
-                          <p>{{ service.name }}</p>
+                          <p>{{ service.about }}</p>
                         </v-tooltip>
                         <v-card-text class="d-flex flex-column align-center">
                           <v-row align="center" class="mx-0">
@@ -272,10 +272,10 @@ export default {
 
       return highPrices;
     },
-    /*setId(i){
+    setId(i){
       this.id = i
       this.$router.push({ path: `/publications/${this.id}`});
-    }*/
+    }
   },
   async mounted() {
     this.serviceOffers = await this.filterPublicationsByLowCost();

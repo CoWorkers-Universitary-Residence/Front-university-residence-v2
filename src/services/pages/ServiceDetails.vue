@@ -10,7 +10,7 @@
               <v-spacer></v-spacer>
               <v-icon>mdi-eye-outline</v-icon>
             </div>
-            <p>This is an agency account, only review mode is allowed.</p>
+            <p>This is an owner account, only review mode is allowed.</p>
           </v-card>
           <v-card v-else class="rounded-lg px-4 py-2">
             <v-list>
@@ -72,11 +72,11 @@
         <v-col cols="12" class="col-md-9">
           <v-card class="py-4 px-8 mb-4 rounded-lg">
             <v-list>
-              <v-subheader class="title font-weight-bold pl-0">{{service.name}} </v-subheader>
+              <v-subheader class="title font-weight-bold pl-0">{{service.about}} </v-subheader>
               <v-row>
                 <v-col class="d-flex">
                   <v-icon color ="primary"> mdi-map-marker-circle </v-icon>
-                  <v-subheader>{{service.location}}</v-subheader>
+                  <v-subheader>{{service.address}}</v-subheader>
                 </v-col>
                 <v-col>
                   <v-subheader class="title font-weight-bold justify-end"> <v-icon color ="amber"> mdi-star </v-icon>  {{service.score}}</v-subheader>
@@ -85,7 +85,7 @@
               <v-row class="justify-center">
                 <v-col class="d-flex child-flex ">
                   <v-img
-                      :src= service.photos
+                      :src= service.photo
                       :lazy-src="`https://www.google.com/url?sa=i&url=https%3A%2F%2Fdefinicion.de%2Fperfil-de-usuario%2F&psig=AOvVaw088rXtThQz9GDWFPaNwx1G&ust=1637556985474000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNjw5aXVqPQCFQAAAAAdAAAAABAD`"
                       aspect-ratio="1"
                       max-height="400"
@@ -245,7 +245,7 @@ export default {
         });
     },
     async retrieveAgency() {
-      await AgenciesService.getById(this.service.agencyId)
+      await AgenciesService.getById(this.service.ownerId)
         .then(response => {
           this.agency = response.data;
           console.log(this.agency);

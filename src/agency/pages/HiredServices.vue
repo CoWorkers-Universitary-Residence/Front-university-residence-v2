@@ -1,7 +1,7 @@
 <template>
   <v-row align="center" class="pa-4">
     <v-col cols="12">
-      <h2 class="mb-3 title font-weight-bold">Hired services</h2>
+      <h2 class="mb-3 title font-weight-bold">Rented rooms</h2>
       <div class="d-flex justify-end">
         <v-btn color="primary" class="mb-3">Download</v-btn>
       </div>

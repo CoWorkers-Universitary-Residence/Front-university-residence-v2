@@ -122,7 +122,7 @@ export default {
   beforeMount() {
     this.id = this.$route.params.id
     this.retrieveServices();
-    this.Aid = this.services.AgencyId
+    this.Aid = this.services.ownerId
   },
 }
 </script>
