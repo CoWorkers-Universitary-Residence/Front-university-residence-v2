@@ -87,6 +87,14 @@
                     solo dense
                     hide-details
                     outlined
+                    class="rounded-0">
+                </v-text-field>
+                <v-text-field
+                    v-model="newService.photo"
+                    placeholder="Url photo"
+                    solo dense
+                    hide-details
+                    outlined
                     class="rounded-br-xl rounded-t-0 rounded-l-0">
                 </v-text-field>
               </v-col>
@@ -191,7 +199,8 @@ export default {
       escrow: '',
       extra_expenses: '',
       gender: '',
-      visit: ''
+      visit: '',
+      photo: ''
     },
     activity: {
       name: '',
@@ -226,7 +235,8 @@ export default {
           views: 0,
           ownerId: this.$store.state.auth.user.id,
           score: 0,
-          reviews: 0
+          reviews: 0,
+          photo: this.newService.photo
         };
 
         console.log(newServiceDto)
@@ -257,6 +267,7 @@ export default {
       this.newService.extra_expenses = '';
       this.newService.gender = '';
       this.newService.visit = '';
+      this.newService.photo = '';
     },
     saveActivity(){
       if (this.validateFormActivities()) {

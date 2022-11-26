@@ -18,7 +18,7 @@
           <!-- SECTION: OFFERS -->
           <v-card id="offers" class="py-4 px-8 mb-4 rounded-lg">
             <v-list>
-              <v-subheader class="title font-weight-bold pl-0">Offers of the day</v-subheader>
+              <v-subheader class="title font-weight-bold pl-0">Economic</v-subheader>
               <v-list-item-group>
                 <v-row>
                   <v-col cols="12" class="col-md-3" v-for="service in serviceOffers" v-bind:key="service.id">
@@ -30,7 +30,7 @@
                             indeterminate
                         ></v-progress-linear>
                       </template>
-                      <a><v-img height=120 v-bind:src="service.photos"></v-img></a>
+                      <a><v-img height=120 v-bind:src="service.photo"></v-img></a>
                       <div class="pa-3">
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on, attrs }">
@@ -39,10 +39,10 @@
                                   class="black--text h4 truncate-text"
                                   v-bind="attrs"
                                   v-on="on"
-                              >{{ service.name }}</p>
+                              >{{ service.about }}</p>
                             </a>
                           </template>
-                          <p>{{ service.name }}</p>
+                          <p>{{ service.about }}</p>
                         </v-tooltip>
                         <v-card-text class="d-flex flex-column align-center">
                           <v-row align="center" class="mx-0">
@@ -58,9 +58,6 @@
                             </a>
                           </v-row>
                           <div class="pt-3 text-subtitle-1 d-flex flex-row">
-                            <a class="text-decoration-none ">
-                              <div class="text-decoration-line-through pr-2 black--text">$500</div>
-                            </a>
                             <a class="text-decoration-none">
                               <div class="black--text"> {{ `$${service.price}.00` }} </div>
                             </a>
@@ -77,7 +74,7 @@
           <!-- SECTION: MORE POPULAR -->
           <v-card id="populars" class="py-4 px-8 mb-4 rounded-lg">
             <v-list>
-              <v-subheader class="title font-weight-bold pl-0">The most populars</v-subheader>
+              <v-subheader class="title font-weight-bold pl-0">Comfortable</v-subheader>
               <v-list-item-group>
                 <v-row>
                   <v-col cols="12" class="col-md-3" v-for="service in servicePopulars" v-bind:key="service.id">
@@ -89,7 +86,7 @@
                             indeterminate
                         ></v-progress-linear>
                       </template>
-                      <a><v-img height=120 v-bind:src="service.photos"></v-img></a>
+                      <a><v-img height=120 v-bind:src="service.photo"></v-img></a>
                       <div class="pa-3">
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on, attrs }">
@@ -98,10 +95,10 @@
                                   class="black--text h4 truncate-text"
                                   v-bind="attrs"
                                   v-on="on"
-                              >{{ service.name }}</p>
+                              >{{ service.about }}</p>
                             </a>
                           </template>
-                          <p>{{ service.name }}</p>
+                          <p>{{ service.about }}</p>
                         </v-tooltip>
                         <v-card-text class="d-flex flex-column align-center">
                           <v-row align="center" class="mx-0">
@@ -133,7 +130,7 @@
           <!-- SECTION: FOR YOU -->
           <v-card id="forYou" class="py-4 px-8 rounded-lg">
             <v-list>
-              <v-subheader class="title font-weight-bold pl-0">For you</v-subheader>
+              <v-subheader class="title font-weight-bold pl-0">Luxury</v-subheader>
               <v-list-item-group>
                 <v-row>
                   <v-col cols="12" class="col-md-3" v-for="service in serviceForYou" v-bind:key="service.id">
@@ -145,7 +142,7 @@
                             indeterminate
                         ></v-progress-linear>
                       </template>
-                      <a><v-img height=120 v-bind:src="service.photos"></v-img></a>
+                      <a><v-img height=120 v-bind:src="service.photo"></v-img></a>
                       <div class="pa-3">
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on, attrs }">
@@ -154,10 +151,10 @@
                                   class="black--text h4 truncate-text"
                                   v-bind="attrs"
                                   v-on="on"
-                              >{{ service.name }}</p>
+                              >{{ service.about }}</p>
                             </a>
                           </template>
-                          <p>{{ service.name }}</p>
+                          <p>{{ service.about }}</p>
                         </v-tooltip>
                         <v-card-text class="d-flex flex-column align-center">
                           <v-row align="center" class="mx-0">
@@ -173,9 +170,6 @@
                             </a>
                           </v-row>
                           <div class="pt-3 text-subtitle-1 d-flex flex-row">
-                            <a class="text-decoration-none ">
-                              <div class="text-decoration-line-through pr-2 black--text">$500</div>
-                            </a>
                             <a class="text-decoration-none">
                               <div class="black--text"> {{ `$${service.price}.00` }} </div>
                             </a>
@@ -211,23 +205,72 @@ export default {
     servicePopulars: [],
     serviceForYou: [],
     categories: [
-      { id: 'offers', name: "Offers of the day" },
-      { id:'populars', name: "The most popular" },
-      { id: 'forYou', name: "For you"}],
+      { id: 'offers', name: "Economic" },
+      { id:'populars', name: "Comfortable" },
+      { id: 'forYou', name: "Luxury"}],
     id: ''
   }),
 
   methods: {
-    async filterServicesByCategory(category, start, limit) {
+    async filterPublicationsByLowCost() {
       let services = [];
-      await ServiceServices.getByCategory(category, start, limit)
+      await ServiceServices.getAll()
         .then(response => {
           services = response.data;
         })
         .catch(errors => {
           this.errors.push(errors);
         });
-      return services;
+
+      let lowPrices = [];
+
+      for(let i = 0; i <= services.length; i++){
+        if(services[i]?.price <= 1000){
+          lowPrices.push(services[i]);
+        }
+      }
+
+      return lowPrices;
+    },
+    async filterPublicationsByMediumCost() {
+      let services = [];
+      let mediumPrices = [];
+
+      await ServiceServices.getAll()
+          .then(response => {
+            services = response.data;
+          })
+          .catch(errors => {
+            this.errors.push(errors);
+          });
+
+      for(let i = 0; i <= services.length; i++){
+        if(services[i]?.price > 1000 && services[i]?.price <= 5000){
+          mediumPrices.push(services[i]);
+        }
+      }
+
+      return mediumPrices;
+    },
+    async filterPublicationsByHighCost() {
+      let services = [];
+      let highPrices = [];
+
+      await ServiceServices.getAll()
+          .then(response => {
+            services = response.data;
+          })
+          .catch(errors => {
+            this.errors.push(errors);
+          });
+
+      for(let i = 0; i <= services.length; i++){
+        if(services[i]?.price > 5000){
+          highPrices.push(services[i]);
+        }
+      }
+
+      return highPrices;
     },
     setId(i){
       this.id = i
@@ -235,9 +278,9 @@ export default {
     }
   },
   async mounted() {
-    this.serviceOffers = await this.filterServicesByCategory('offers', this.start, this.limit);
-    this.servicePopulars = await this.filterServicesByCategory('populars', this.start, this.limit);
-    this.serviceForYou = await this.filterServicesByCategory('forYou', this.start, this.limit);
+    this.serviceOffers = await this.filterPublicationsByLowCost();
+    this.servicePopulars = await this.filterPublicationsByMediumCost();
+    this.serviceForYou = await this.filterPublicationsByHighCost();
   }
 }
 </script>
